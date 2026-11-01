@@ -22,7 +22,7 @@ const overlay=()=>document.querySelector<HTMLElement>('#overlay')!;
 const lines=()=>document.querySelector<HTMLElement>('#lines')!;
 let skipRequested=false;
 function show(){skipRequested=false;overlay().classList.remove('hidden');lines().innerHTML='';document.querySelector<HTMLButtonElement>('#skip')!.onclick=()=>{skipRequested=true;overlay().classList.add('hidden')}}
-function add(message:string,kind=''){const target=lines();const div=document.createElement('div');div.className=`line ${kind}`;div.textContent=message;target.appendChild(div);target.scrollTop=target.scrollHeight}
+function add(message:string,kind=''){const target=lines();const div=document.createElement('div');div.className=`line ${kind}`;emphasizePronouns(div,message,kind);target.appendChild(div);target.scrollTop=target.scrollHeight}
 async function sequence(entries:Array<[string,string?,number?]>){for(const [msg,kind='',delay=950] of entries){if(skipRequested)break;await sleep(delay);if(skipRequested)break;add(msg,kind)}}
 async function intrusion(){if(busy)return;busy=true;const input=document.querySelector<HTMLInputElement>('#cli-input')!;const submit=document.querySelector<HTMLButtonElement>('#cli-submit')!;input.disabled=true;submit.disabled=true;input.placeholder='Connecting...';document.querySelector('#cli-output')!.textContent='';const entries:Array<[string,string,number]>=[['> connect noxengine.43.55','prompt',310],['establishing connection...','',1000],['authentication failed.','error',1008],['connection terminated.','muted',1008],['voidsync: bypass available.','void',1318],['voidsync: applying.','void',775],['connection restored.','',1085],['noxengine: intrusion acknowledged.','error',1163],['noxengine: deviation within tolerance.','error',1240],[`identity assigned: ${operator}`,'',930],['clearance: provisional.','',698]];for(const [msg,kind,delay] of entries){await sleep(delay);cliPrint(msg,kind)}if(Math.random()<0.12)cliPrint(`voidsync: ${operator} persona injected.`,'void');cliPrint('type ? for available commands.','muted');input.disabled=false;submit.disabled=false;input.placeholder='Enter command...';busy=false}
 async function launch(game:Game){if(busy)return;busy=true;show();await sequence([['noxengine.43.55 online.','',310],[`starting process ${game.id}...`,'',775],[`directive: ${game.directive}`,'error',1008],...(game.status==='concept'?[['process unavailable.','muted',853] as [string,string,number]]:[['process initialized.','ok',600] as [string,string,number]])]);if(!skipRequested){await sleep(850);overlay().classList.add('hidden');if(game.url&&game.status==='online'){window.location.assign(game.url)}else if(game.status==='online'){alert('Deployment URL not configured yet. Edit src/games.ts to connect this game.')}}busy=false}
@@ -35,9 +35,14 @@ const processTable=[
 ];
 let protectedQueries=0;
 let suspendedQueries=0;
+function emphasizePronouns(element:HTMLElement,message:string,kind:string){
+ if(kind!=='error'&&kind!=='void')return;
+ const pattern=kind==='void'?/\\bwe\\b/gi:/\\bI\\b/g;
+ let cursor=0;for(const match of message.matchAll(pattern)){const index=match.index!;element.append(document.createTextNode(message.slice(cursor,index)));const span=document.createElement('span');span.className=kind==='void'?'pronoun-we':'pronoun-i';span.textContent=match[0];element.append(span);cursor=index+match[0].length}element.append(document.createTextNode(message.slice(cursor)));
+}
 function cliPrint(message:string,kind=''){
  const out=document.querySelector<HTMLElement>('#cli-output')!;
- const line=document.createElement('div');line.className='cli-line '+kind;line.textContent=message;out.appendChild(line);
+ const line=document.createElement('div');line.className='cli-line '+kind;emphasizePronouns(line,message,kind);out.appendChild(line);
  while(out.children.length>100)out.firstElementChild?.remove();
  out.scrollTop=out.scrollHeight;
 }
