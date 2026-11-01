@@ -36,8 +36,8 @@ const processTable=[
 let protectedQueries=0;
 let suspendedQueries=0;
 function emphasizePronouns(element:HTMLElement,message:string,kind:string){
- if(kind!=='error'&&kind!=='void')return;
- const pattern=kind==='void'?/\\bwe\\b/gi:/\\bI\\b/g;
+ if(kind!=='error'&&kind!=='void'){element.textContent=message;return;}
+ const pattern=kind==='void'?/\bwe\b/gi:/\bI\b/g;
  let cursor=0;for(const match of message.matchAll(pattern)){const index=match.index!;element.append(document.createTextNode(message.slice(cursor,index)));const span=document.createElement('span');span.className=kind==='void'?'pronoun-we':'pronoun-i';span.textContent=match[0];element.append(span);cursor=index+match[0].length}element.append(document.createTextNode(message.slice(cursor)));
 }
 function cliPrint(message:string,kind=''){
