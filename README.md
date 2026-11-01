@@ -3,7 +3,7 @@
 A fictional system interface for an indie game experiment portal.
 
 ## Deployment location
-https://nullrelay.e-david-reeves.workers.dev
+https://nullrelay.argaen.workers.dev
 
 ## Run locally
 
