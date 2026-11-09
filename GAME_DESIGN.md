@@ -1,6 +1,6 @@
 # nullrelay_ — Terminal Game Design Document
 
-Status: Living design reference | Updated: 2026-10-31
+Status: Living design reference | Updated: 2026-11-09
 
 ## 1. Vision
 
@@ -34,7 +34,7 @@ Do not explain the true nature of either intelligence. Visitors should infer pos
 Current design:
 1. Header with `nullrelay_` branding and navigation.
 2. **One prominent operator terminal**, near the top of the page. It automatically plays the connection/intrusion animation on each page load; then unlocks command input. The completed transcript remains in scrollback. Replay is available.
-3. **Direct PID buttons below the terminal** launch the two playable games without requiring CLI knowledge.
+3. **Direct PID buttons below the terminal** launch the playable games without requiring CLI knowledge.
 4. The `SYSTEM ACCESS / PROVISIONAL` and `Unauthorized. Not unexpected.` hero messaging appears **below** the terminal.
 5. Experiment cards and protocol section remain below.
 6. A **separate launch animation/overlay** remains useful for transitioning to external game URLs. Navigation uses the **same browser tab** after the animation (important for iPad Safari popup blocking).
@@ -70,10 +70,13 @@ PIDs are stable fictional identities, **never positional card numbers**.
 | 091 | hello-world | ACTIVE | `survive.` | https://4rg43n.github.io/hello-world-game/ |
 | 097 | posix_terminal | SUSPENDED | unknown | none; mystery |
 | 112 | pokemon-tcg | ACTIVE | `predict.` | https://4rg43n.github.io/pokemon-tcg-web/ |
+| 118 | hw-tactics | ACTIVE | `remove errant processes. cognitive assessment initiated.` | https://4rg43n.github.io/hw-tactics/ |
 | 043 | noxengine.43.55 | PROTECTED / hidden from `list` | redacted | none |
 | unassigned | Black Signal | CONCEPT | `remember.` | none |
 
 Game cards must use the same PID as the CLI. Do not reuse or renumber existing PIDs casually. `PID_---` indicates unassigned.
+
+HW Tactics is set on the same station as Hello World, but framed as a tactical cognitive assessment. Its system directive is `remove errant processes. cognitive assessment initiated.` The relationship between the station's declared enemies and its actual motives is intentionally ambiguous.
 
 Games are framed as **processes with directives**. The directive's real subject may differ from the game's apparent goal: `survive.` might not refer to the player; `predict.` may mean studying the operator rather than winning.
 
@@ -116,7 +119,7 @@ Potential future: local history of process visits, unlocks, and clues. If implem
 - Game metadata and destinations: `src/games.ts`.
 - Styling: `src/style.css`.
 - Cloudflare Workers deployment automatically follows commits to `main`; build `npm run build`, deploy `npx wrangler deploy --assets ./dist`.
-- Game source repositories: https://github.com/4rg43n/hello-world-game and https://github.com/4rg43n/pokemon-tcg-web.
+- Game source repositories: https://github.com/4rg43n/hello-world-game and https://github.com/4rg43n/pokemon-tcg-web and https://github.com/4rg43n/hw-tactics.
 - The terminal and launch overlay are fictional UI only. Keep external URLs explicit and safe.
 
 ## 10. Design principles / guardrails
