@@ -2,5 +2,6 @@ export type Game = {id:string;title:string;type:string;description:string;direct
 export const games:Game[] = [
  {id:'hello-world-game',title:'Hello World',type:'FPS / PROTOTYPE',description:'An arcade survival prototype with escalating encounters.',directive:'survive.',status:'online',url:'https://4rg43n.github.io/hello-world-game/'},
  {id:'pokemon-tcg-web',title:'Pokémon TCG AI',type:'STRATEGY / AI',description:'A card-game experiment in planning and adaptation.',directive:'predict.',status:'online',url:'https://4rg43n.github.io/pokemon-tcg-web/'},
+ {id:'hw-tactics',title:'HW Tactics',type:'TACTICS / STATION',description:'Tactical operations aboard the same station as Hello World. Identify and remove errant processes.',directive:'remove errant processes. cognitive assessment initiated.',status:'online',url:'https://4rg43n.github.io/hw-tactics/'},
  {id:'black-signal',title:'Black Signal',type:'ROGUELIKE / CONCEPT',description:'A signal with no known origin.',directive:'remember.',status:'concept'}
 ];
