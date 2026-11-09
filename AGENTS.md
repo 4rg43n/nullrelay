@@ -5,7 +5,7 @@ Before editing the website, read **[GAME_DESIGN.md](./GAME_DESIGN.md)**. It is t
 ## Non-negotiable continuity
 - Brand is `nullrelay_` (lowercase, trailing underscore).
 - Preserve the functional portal and direct game shortcuts. The CLI is optional exploration, not a gate.
-- Maintain stable PIDs across terminal, cards, and shortcuts: 091 Hello World; 112 Pokémon TCG; 097 suspended posix_terminal; 043 protected noxengine. Black Signal has no assigned PID.
+- Maintain stable PIDs across terminal, cards, and shortcuts: 091 Hello World; 112 Pokémon TCG; 118 HW Tactics (same station as Hello World); 097 suspended posix_terminal; 043 protected noxengine. Black Signal has no assigned PID.
 - Noxengine and voidsync **never use contractions**.
 - Noxengine's rare `I` is yellow; voidsync's rare `we` is magenta. Use sparingly and do not explain the convention in the site.
 - Their voices are terse, clinical, ambiguous. No lengthy lore dumps.
